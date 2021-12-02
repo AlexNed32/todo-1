@@ -1,8 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import Todo from '../components/Todo';
 import TodoForm from '../components/TodoForm';
+import { GlobalContext } from '../context/GlobalState';
 
 export const TodoPage = () => {
+    const { todos2 } = useContext(GlobalContext)
+    console.log(todos2)
+
     const [todos, setTodos] = useState([])
 
     function addTodo(inputValue) {
@@ -25,7 +29,7 @@ export const TodoPage = () => {
         )])
     }
     return (
-        <>
+        <div style={{ maxWidth: "30rem", margin: "4rem auto" }}>
             <TodoForm
                 addTodo={addTodo}
             />
@@ -43,6 +47,6 @@ export const TodoPage = () => {
                         )
                     })
             }
-        </>
+        </div>
     )
 }

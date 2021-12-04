@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
+import { GlobalContext } from '../context/GlobalState';
 import {
     Form,
     InputGroup,
@@ -6,13 +7,21 @@ import {
     Button
 } from 'reactstrap'
 
-export default function TodoForm({ addTodo }) {
+export default function TodoForm() {
+    const { addTodo } = useContext(GlobalContext)
     const [inputValue, setInputValue] = useState('');
 
     function handlerSubmit(e) {
         e.preventDefault();
         setInputValue(e.target.value)
-        addTodo(inputValue);
+        if (inputValue) {
+            const newTodo = {
+                id: Date.now(),
+                title: inputValue,
+                status: false
+            }
+            addTodo(newTodo);
+        }
         setInputValue('');
     }
 

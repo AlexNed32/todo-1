@@ -3,7 +3,7 @@ import AppReducer from './AppReducer';
 
 // Initial state
 const initialState = {
-    todos2: [
+    todos: [
         { id: 1, title: 'Todo 1', status: false },
         { id: 2, title: 'Todo 2', status: false },
         { id: 3, title: 'Todo 3', status: false },
@@ -26,9 +26,34 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    const addTodo = (newTodo) => {
+        dispatch({
+            type: 'ADD_TODO',
+            payload: newTodo
+        })
+    }
+
+    const handlerToggle = (id) => {
+        dispatch({
+            type: 'SWITCH_STATUS',
+            payload: id
+        })
+    }
+
+    const editTodos = (todo) =>{
+        dispatch({
+            type: 'EDIT_TODO',
+            payload: todo
+        })
+    }
+
     return (
         <GlobalContext.Provider value={{
-            todos2: state.todos2
+            todos: state.todos,
+            removeTodo,
+            addTodo,
+            handlerToggle,
+            editTodos
         }}>
             {children}
         </GlobalContext.Provider>

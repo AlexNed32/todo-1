@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Layout } from "./components/Layout";
+import React, { useEffect } from "react";
+import { Routes, Route } from 'react-router-dom';
 import { Header } from "./components/Header"
 import { TodoPage } from "./pages/TodoPage";
 import { EditPage } from "./pages/EditPage";

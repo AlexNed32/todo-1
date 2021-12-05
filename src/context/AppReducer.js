@@ -1,4 +1,4 @@
-export default (state, action) => {
+export default function (state, action) {
     switch (action.type) {
         case 'REMOVE_TODO':
             return {
@@ -13,16 +13,18 @@ export default (state, action) => {
                 todos: [...state.todos.map((todo) => todo.id === action.payload ? { ...todo, status: !todo.status } : { ...todo })]
             }
         case 'EDIT_TODO':
-            const upatedTodo = action.payload;
-
+            const updateTodo = action.payload;
+            console.log('updateTodo', updateTodo)
             const updateTodos = state.todos.map((todo) => {
-                if (todo.id === upatedTodo.id) {
-                    return upatedTodo
+                if (todo.id === updateTodo.id) {
+                    return updateTodo
                 }
                 return todo;
             })
+            console.log('updateTodos', updateTodos)
 
             return {
+                ...state,
                 todos: updateTodos
             }
 

@@ -4,13 +4,8 @@ import TodoForm from '../components/TodoForm'
 import { GlobalContext } from '../context/GlobalState';
 
 export const TodoPage = () => {
-    const { todos } = useContext(GlobalContext)
-
-    // useEffect(()=>{
-    //     return(
-
-    //     )
-    // }, [])
+    const {todos} = useContext(GlobalContext)
+    console.log('todos',todos.todos)
 
     return (
         <div style={{ maxWidth: "30rem", margin: "4rem auto" }}>

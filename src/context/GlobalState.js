@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect } from "react";
 import AppReducer from './AppReducer';
 
 // Initial state
@@ -10,14 +10,21 @@ const initialState = {
     ]
 };
 
+
+
 // Create Context
 export const GlobalContext = createContext(initialState);
 
 
 // Provider Component
 export const GlobalProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [state, dispatch] = useReducer(AppReducer, JSON.parse(localStorage.getItem('todos')));
+    console.log('state', state)
 
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(state))
+    }, [state])
+    // console.log('local',JSON.parse(localStorage.getItem('todos')))
     //Actions
     const removeTodo = (id) => {
         dispatch({
@@ -40,7 +47,7 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
-    const editTodos = (todo) =>{
+    const editTodos = (todo) => {
         dispatch({
             type: 'EDIT_TODO',
             payload: todo
